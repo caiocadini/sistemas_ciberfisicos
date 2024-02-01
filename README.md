@@ -16,6 +16,8 @@ Nesta situação, após bootar o Linux é realizado um glitching attack com o ob
 Primeiro aloca-se um buffer, então requisita-se a criação de vários mapeamentos da Tabela apontando para o buffer criado. Após isto, desalocamos o buffer após liberar todos os mapeamentos para ele, a ideia é que o hipervisor destrua cada um dos mapeamentos, porém se realizarmos o glitching attack neste momento, afeta-se o hipervisor de modo que o mesmo pense que houve o desalocamento da memória enquanto o mapeamento se mantém intacto.
 
 Neste caso, o hipervisor ainda contém os mapeamentos para o buffer desalocado, podendo agora modificar o seu conteúdo. Neste ponto o exploit cria um segmento virtual e verifica se ele se localiza em alguma parte da memória referente ao endereço do buffer liberado, criando segmentos virtual até que algum esteja, possibilitando o usuário escrever diretamente para esta Tabela de Páginas, neste ponto o ataque instala duas syscalls que lhe fornecem acesso direto de leitura e escrita em qualquer endereço de memória
+![image](https://github.com/caiocadini/sistemas_ciberfisicos/assets/99414301/8fea6ec1-ac98-41b3-bd05-9b909e481f07)
+
 
 ## PS3 Jailbreak
 
@@ -28,3 +30,6 @@ Primeiro, simula-se que as 3 primeiras portas do hub estão ocupadas, logo após
 Após mais altrerações nos descritores da porta 4 e a análise sintática do payload contido no descritor da porta 2 que já foi desplugada, o PS3 acaba por sobrescrever a tag de limite do malloc no começo do descrito da porta 3. Neste caso o ataque é iniciado quando a tag de limite do malloc é apontada para uma função chamada quando um dispositivo USB é liberado.
 
 Por fim, o dispositivo envia um sinal de que um dispositivo oficial de PS3 foi conectado à porta 5, uma key é enviada para o dispositivo que responde com dados estáticos, estabelecendo código desconhecido na memória, o hub então desconecta o suposto dispositivo na porta 3, chamando a função sobrescrita e completa o ataque.
+
+![image](https://github.com/caiocadini/sistemas_ciberfisicos/assets/99414301/bd424f32-f1f7-4939-86a5-34114e55dc92)
+
